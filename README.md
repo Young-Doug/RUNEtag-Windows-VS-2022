@@ -1,3 +1,11 @@
+This repository is forked from artursg/RUNEtag.
+
+I have converted it to work with windows 10 and compiled it using Visual Studios 2022 without CMake. It is using vcpkg for most of the dependencies except Qt and NTL. 
+Qt version 6.5.3 is installed from their website with only the MSVC 2019 64-bit option selected in the installer. 
+NTL was downloaded from the official website, compiled and included in the repository.
+In Visual Studios I used the Qt Visual Studios Tools version 3.2.0.
+
+
 # RUNETag 
 
 **RUNETag** is a fiducial marker system which heavily relies on the robust framework of cyclic codes to offer superior occlusion resilience, accurate detection and robustness against various types of noise.
