@@ -1,8 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-#include <cv.h>
-#include <highgui.h>
+#include <opencv2/opencv.hpp>
 #include "../include/ImgTextStream.hpp"
 #include "VirtualCamera.h"
 
@@ -26,11 +25,11 @@ int run_interactive_mode() {
     
     std::cout << "Loading source image" << std::endl;
 
-    IplImage* src_img = cvLoadImage( IMG_FILENAME );
-	if( src_img == NULL ) {
-		std::cout << "Unable to load image " << std::endl;
-		return -1;
-	}
+    cv::Mat src_img = cv::imread( IMG_FILENAME );
+	  if( src_img.empty() ) {
+		  std::cout << "Unable to load image " << std::endl;
+		  return -1;
+	  }
 
     cvlab::VirtualCamera* vcam = new cvlab::VirtualCamera( cv::Mat( src_img ) );
 
@@ -49,11 +48,11 @@ int run_interactive_mode() {
              << "f: " << f << " cx: " << cx << " cy: " << cy << cvExt::newline;
         }*/
 
-        IplImage dst_img = (IplImage)vcam->getSnapshot();
-        cvShowImage( "image", &dst_img );
+        cv::Mat dst_img = (cv::Mat)vcam->getSnapshot();
+        cv:imshow( "image", dst_img );
         std::cout << "done" << std::endl;
 
-        int code = cvWaitKey(0);
+        int code = cv::waitKey(0);
         if( (code & 255) == 27 ) {
             running = false;
             break;
@@ -100,7 +99,7 @@ int run_interactive_mode() {
 	
 	
 	// Release the capture device housekeeping
-	cvDestroyWindow( "image" );
+	cv::destroyWindow( "image" );
 	return 0;
 }
 

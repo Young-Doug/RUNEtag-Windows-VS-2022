@@ -2,7 +2,7 @@
 #define _VIRTUAL_CAMERA_H
 
 
-#include <cv.h>
+#include <opencv2/opencv.hpp>
 
 
 
@@ -14,7 +14,7 @@ namespace cvlab {
 
     public:
         explicit VirtualCamera( const cv::Mat _img, float fx=1000.0f, float fy=1000.0f );
-        explicit VirtualCamera( IplImage* _img, float fx=1000.0f, float fy=1000.0f );
+        explicit VirtualCamera( cv::Mat* _img, float fx=1000.0f, float fy=1000.0f );
         ~VirtualCamera();
 
         void rotateOnXAxis( float angle );
